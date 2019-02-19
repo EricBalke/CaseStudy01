@@ -1,0 +1,52 @@
+---
+  title: "EricBalke_BlaineBrewer_CaseStudy01"
+author: "Eric Balke"
+date: "February 18th, 2019"
+output: html_document
+---
+  
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r CS01_Q1}
+library(XML)
+library(dplyr)
+library(tidyr)
+library(stringi)
+library(rvest)
+library(ggplot2)
+library(RCurl)
+
+# 1.	How many breweries are present in each state?
+
+# Put URL address into the beerURL and breweryURL objects
+beerURL <- paste0("https://raw.githubusercontent.com/BivinSadler/MSDS-6306-Doing-Data-Science/master/Unit%207/Beers.csv")
+
+beers <- read.csv(beerURL)
+
+breweryURL <- paste0("https://raw.githubusercontent.com/BivinSadler/MSDS-6306-Doing-Data-Science/master/Unit%207/Breweries.csv")
+
+brewery <- read.csv(breweryURL)
+
+# 2.	Merge beer data with the breweries data. Print the first 6 observations and the last six observations to check the merged file.
+
+# have to fix this merge before proceeding... EB 2/18
+merged_data <- left_join(beers, brewery, by.x = "Brewery_id", by.y = "Brew_ID", all.x=TRUE)
+head(merged_data)
+tail(merged_data)
+
+
+
+# 3.	Report the number of NA's in each column.
+
+# 4.	Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.
+
+# 5.	Which state has the maximum alcoholic (ABV) beer? Which state has the most bitter (IBU) beer?
+
+# 6.	Summary statistics for the ABV variable.
+
+# 7.	Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot.
+
+```
+
