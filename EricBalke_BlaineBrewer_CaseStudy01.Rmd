@@ -32,14 +32,21 @@ brewery <- read.csv(breweryURL)
 # 2.	Merge beer data with the breweries data. Print the first 6 observations and the last six observations to check the merged file.
 
 # have to fix this merge before proceeding... EB 2/18
-merged_data <- left_join(beers, brewery, by.x = "Brewery_id", by.y = "Brew_ID", all.x=TRUE)
+merged_data <- merge(beers, brewery, by.x = "Brewery_id", by.y = "Brew_ID")
 head(merged_data)
 tail(merged_data)
-
+# fix name collisions
+colnames(merged_data)[2] <- c("Beer_Name")
+colnames(merged_data)[8] <- c("Brewery_Name")
 
 # 3.	Report the number of NA's in each column.
+NAs <- colSums(is.na(merged_data))
+NAs
 
 # 4.	Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.
+median(merged_data$ABV, na.rm=TRUE)
+median(merged_data$IBU, na.rm=TRUE)
+
 
 # 5.	Which state has the maximum alcoholic (ABV) beer? Which state has the most bitter (IBU) beer?
 
