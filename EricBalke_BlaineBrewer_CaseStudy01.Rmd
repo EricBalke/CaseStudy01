@@ -37,7 +37,6 @@ head(merged_data)
 tail(merged_data)
 
 
-
 # 3.	Report the number of NA's in each column.
 
 # 4.	Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.
