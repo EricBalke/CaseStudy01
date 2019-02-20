@@ -1,5 +1,5 @@
 ---
-  title: "EricBalke_BlaineBrewer_CaseStudy01"
+title: "EricBalke_BlaineBrewer_CaseStudy01"
 author: "Eric Balke"
 date: "February 18th, 2019"
 output: html_document
