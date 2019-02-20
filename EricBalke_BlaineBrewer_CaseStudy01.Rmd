@@ -58,10 +58,18 @@ ggplot(ABV_med, aes(x=State, y =ABV)) + geom_bar(stat = "identity") + labs(x="St
 ggplot(IBU_med, aes(x=State, y =IBU)) + geom_bar(stat = "identity") + labs(x="State",y="IBU") + ggtitle("Median IBU by State") + theme(plot.title = element_text(hjust = 0.5)) + theme(axis.text=element_text(size=5))
 
 # 5.	Which state has the maximum alcoholic (ABV) beer? Which state has the most bitter (IBU) beer?
+ABVMax <- merged_data[which.max(merged_data$ABV),]
+ABVMax
+IBUMax <- merged_data[which.max(merged_data$IBU),]
+IBUMax
 
 # 6.	Summary statistics for the ABV variable.
+summary(merged_data$ABV)
 
 # 7.	Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot.
+ggplot(merged_data, aes(x=ABV, y = IBU)) + geom_point() + geom_smooth(method="lm", se=TRUE, fullrange=FALSE, level=0.95, linetype="dashed", color="darkred", fill="blue")
+
+# There appears to be a positive correlation between ABV and IBU.
 
 ```
 
