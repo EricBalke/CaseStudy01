@@ -17,6 +17,7 @@ library(stringi)
 library(rvest)
 library(ggplot2)
 library(RCurl)
+library(data.table)
 
 # 1.	How many breweries are present in each state?
 
