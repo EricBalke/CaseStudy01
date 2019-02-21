@@ -18,6 +18,8 @@ library(rvest)
 library(ggplot2)
 library(RCurl)
 library(data.table)
+library(plyr)
+library(knitr)
 
 # 1.	How many breweries are present in each state?
 
@@ -29,6 +31,10 @@ beers <- read.csv(beerURL)
 breweryURL <- paste0("https://raw.githubusercontent.com/BivinSadler/MSDS-6306-Doing-Data-Science/master/Unit%207/Breweries.csv")
 
 brewery <- read.csv(breweryURL)
+
+state.brewery <- ddply(brewery,"State",summarize,Breweries=length(Brew_ID))
+
+kable(state.brewery)
 
 # 2.	Merge beer data with the breweries data. Print the first 6 observations and the last six observations to check the merged file.
 
