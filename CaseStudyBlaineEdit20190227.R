@@ -11,7 +11,7 @@ library(knitr)
 library(stringr)
 library(RColorBrewer)
 
-setwd("./CaseStudy1")
+setwd("./CaseStudy01")
 
 # 1.	How many breweries are present in each state?
 # Put URL address into the beerURL and breweryURL objects
@@ -188,7 +188,7 @@ ibu.df %>% ggplot(aes(x="", y = Number, fill = NA_NOTNA)) +
   xlab("") +
   theme(legend.title = element_blank()) +
   ggtitle("Number of Null IBU Values") +
-  theme(plot.title = element_text(hjust = =0.5)) +
+  theme(plot.title = element_text(hjust = 0.5)) +
   geom_bar(width = 1, stat = "Identity") +
   coord_polar("y", start = 0)
 
