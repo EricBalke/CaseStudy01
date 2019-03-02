@@ -1,15 +1,3 @@
----
-title: "CaseStudy01_BalkeBrewer_20190228.rmd"
-author: "Eric Balke & Blaine Brewer"
-date: "February 28th, 2019"
-output: html_document
----
-  
-  ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r CS01_Q1}
 library(XML)
 library(dplyr)
 library(tidyr)
@@ -22,10 +10,8 @@ library(plyr)
 library(knitr)
 library(stringr)
 library(RColorBrewer)
-library(scales)
-library(grid)
 
-# setwd("./CaseStudy1")
+setwd("./CaseStudy01")
 
 # 1.	How many breweries are present in each state?
 # Put URL address into the beerURL and breweryURL objects
@@ -112,25 +98,19 @@ brewery.sum.pop.cons %>% ggplot(aes(x=reorder(State, -PerCapita), y=PerCapita)) 
   theme(plot.title = element_text(hjust = 0.5)) +
   geom_bar(stat = "Identity")
 
-# plot beer consumption per capita per number of breweries
-grob1 = grobTree(textGrob(paste("Pearson Correlation : ", round(cor(brewery.sum.pop.cons$Breweries, brewery.sum.pop.cons$PerCapita, use = "na.or.complete"), 4) ), x = 0.63, y = 0.97, hjust = 0, gp = gpar(col = "red", fontsize = 11, fontface = "bold")))
-
+# plot beer consuption per capita per number of breweries
 brewery.sum.pop.cons %>% ggplot(aes(x=Breweries, y=PerCapita, label = State)) +
   xlab("Number of Breweries") +
   ylab("Gallons per Year") +
   ggtitle("Statewide Personal Consumption per Number of Breweries") +
-  annotation_custom(grob1) +
   theme(plot.title = element_text(hjust = 0.5)) +
   geom_text(aes(label = State), hjust = 0, vjust = 0, size = 3, position = position_jitter(width = 0.5, height = 0.5))
 
 # plot beer total consumption per number of breweries
-grob2 = grobTree(textGrob(paste("Pearson Correlation : ", round(cor(brewery.sum.pop.cons$Breweries, brewery.sum.pop.cons$Total, use = "na.or.complete"), 4) ), x = 0.63, y = 0.97, hjust = 0, gp = gpar(col = "red", fontsize = 11, fontface = "bold")))
-
 brewery.sum.pop.cons %>% ggplot(aes(x=Breweries, y=Total, label = State)) +
   xlab("Number of Breweries") +
   ylab("Consumption in Gallons") +
   ggtitle("Statewide Total Consumption per Number of Breweries") +
-  annotation_custom(grob2) +
   theme(plot.title = element_text(hjust = 0.5)) +
   geom_text(aes(label = State), hjust = 0, vjust = 0, size = 3, position = position_jitter(width = 0.5, height = 0.5))
 
@@ -140,7 +120,7 @@ brewery.sum.pop.cons %>% ggplot(aes(x=Breweries, y=Estimate2018, label = State))
   ylab("2018 Population") +
   ggtitle("Total State Population per Number of Breweries") +
   theme(plot.title = element_text(hjust = 0.5)) +
-  geom_text(aes(label = State), hjust = 0, vjust = 0, size = 3, position =   position_jitter(width = 0.5, height = 0.5))
+  geom_text(aes(label = State), hjust = 0, vjust = 0, size = 3, position = position_jitter(width = 0.5, height = 0.5))
 
 # 2.	Merge beer data with the breweries data. Print the first 6 observations and the last six observations to check the merged file.
 # have to fix this merge before proceeding... EB 2/18
@@ -195,24 +175,22 @@ ibu.df <- rbind(ibu.na.df, ibu.not.df)
 par(mfrow = c(1,1))
 
 # pie chart showing NAs of IBU and ABV
-# add labels to the pie chart first
 abv.df %>% ggplot(aes(x="", y = Number, fill = NA_NOTNA)) + 
-  geom_bar(width = 1, stat = "Identity") +
-  xlab("") +
+  xlab("")+
   theme(legend.title = element_blank()) +
-  ggtitle("Number of Missing ABV Values") +
+  ggtitle("Number of Null ABV Values") +
   theme(plot.title = element_text(hjust = 0.5)) +
-  coord_polar("y", start = 0) +
-  geom_text(aes(label=percent(Number/2410)), position = position_stack(vjust = 0.5)) 
+  geom_bar(width = 1, stat = "Identity") +
+  coord_polar("y", start = 0)
 
-ibu.df %>% ggplot(aes(x="", y = Number, fill = NA_NOTNA)) + 
-  geom_bar(width = 1, stat = "Identity") +
+
+ibu.df %>% ggplot(aes(x="", y = Number, fill = NA_NOTNA)) +
   xlab("") +
   theme(legend.title = element_blank()) +
-  ggtitle("Number of Missing IBU Values") +
+  ggtitle("Number of Null IBU Values") +
   theme(plot.title = element_text(hjust = 0.5)) +
-  coord_polar("y", start = 0) +
-  geom_text(aes(label=percent(Number/2410)), position = position_stack(vjust = 0.5)) 
+  geom_bar(width = 1, stat = "Identity") +
+  coord_polar("y", start = 0)
 
 # 4.	Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.
 median(merged_data$ABV, na.rm=TRUE)
@@ -254,4 +232,3 @@ summary(merged_data$ABV)
 ggplot(merged_data, aes(x=ABV, y = IBU)) + geom_point() + geom_smooth(method="lm", se=TRUE, fullrange=FALSE, level=0.95, linetype="dashed", color="darkred", fill="blue")
 
 # There appears to be a positive correlation between ABV and IBU.
-```
