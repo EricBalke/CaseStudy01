@@ -16,3 +16,6 @@ The purpose of this Case Study is to answer the following 7 questions to the CEO
 6.	Summary statistics for the ABV variable.
 
 7.	Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot.
+
+Brewer - Initial Round of Slides, Final Plots beyond initial quesionts, and polish.
+Balke - Initial Round of code answering questions, and polish.
