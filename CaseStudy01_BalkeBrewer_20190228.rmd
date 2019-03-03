@@ -26,6 +26,7 @@ library(scales)
 library(grid)
 
 # setwd("./CaseStudy1")
+# Balke Video Link: http://www.screencast.com/users/EricBalke/folders/Default/media/01216e5d-d033-4c18-817a-ee0e17c98af3
 
 # 1.	How many breweries are present in each state?
 # Put URL address into the beerURL and breweryURL objects
